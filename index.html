@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aira ChatBot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
+    </style>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
-    
+    <section id="left-section">
+        <div class="side-bar">
+            <div class="side-bar-header">
+                <img src="image/chatbot-icon.png" id="chat-bot-icon">
+                <p class="icon-txt">Aira</p>
+            </div>
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <i data-lucide="search" class="i"></i>
+                </button>
+                <button class="icon-btn">
+                    <i data-lucide="panel-right" class="i"></i>
+                </button>
+            </div>
+        </div>
+        <div class="new-chat-container">
+             <button class="new-chat-btn" >
+                    <i  data-lucide="square-pen" class="new-chat-i"></i>
+                    <p class="new-chat-txt">New Chat</p>
+            </button>
+        </div>
+    </section>
+    <section id="right-section">
+
+    </section>
+    <script>
+        lucide.createIcons();
+    </script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
