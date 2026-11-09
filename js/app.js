@@ -1,3 +1,5 @@
+const apiKey = CONFIG.GEMINI_API_KEY;
+const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
 const rightSection = document.getElementById("right-section");
 const chats = document.getElementById("chats");
