@@ -109,7 +109,7 @@ body {
 }
 
 .icon-btn:hover {
-    .i{color: rgb(3, 1, 112);}
+    .i{color: rgb(3, 0, 164);}
     background-color: rgba(245, 241, 241, 0.736);
     border-radius: 50%;
 }
