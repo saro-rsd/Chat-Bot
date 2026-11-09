@@ -28,6 +28,7 @@ body {
     padding: 5px 15px 5px 0;
     overflow: hidden;
     flex-shrink: 0;
+    flex-direction: column;
     white-space: nowrap;
     transition: width 0.3s ease,
         min-width 0.3s ease;
@@ -108,11 +109,8 @@ body {
 }
 
 .icon-btn:hover {
-    .i {
-        color: rgb(12, 12, 12);
-    }
-
-    background-color: rgb(245, 241, 241);
+    .i{color: rgb(3, 1, 112);}
+    background-color: rgba(245, 241, 241, 0.736);
     border-radius: 50%;
 }
 
@@ -170,11 +168,43 @@ body {
     flex-grow: 1;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     overflow: hidden;
     background: radial-gradient(circle, rgba(2, 0, 36, 1) 18%, rgba(3, 2, 52, 1) 62%, rgba(5, 4, 75, 1) 83%, rgba(5, 4, 75, 1) 93%, rgba(3, 3, 69, 1) 100%);
+}
+
+.header-btns {
+    margin: 20px 20px 0 auto;
+}
+
+.theme-btn {
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 9999px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+}
+
+.lng-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 9999px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+}
+
+.theme-btn:hover,
+.lng-btn:hover {
+    background-color: rgba(255, 255, 255, 0.722);
+    color: rgb(45, 6, 240);
 }
 
 .middle-section {
@@ -370,7 +400,7 @@ body {
     color: transparent;
 }
 
-.suggesion-card-btn{
+.suggesion-card-btn {
     width: 100%;
     height: 40px;
     background-color: transparent;
@@ -378,13 +408,15 @@ body {
     border-radius: 9999px;
     color: white;
     text-align: left;
-    padding-left:20px ;
+    padding-left: 20px;
 
 }
-.suggesion-card-btn:hover{
+
+.suggesion-card-btn:hover {
     width: 100%;
     padding: 15px;
 }
+
 .suggesion-card:hover {
     background-color: #4b4e5847;
     border-radius: 9999px;
@@ -412,9 +444,4 @@ body {
         height: 18px;
         stroke-width: 3px;
     }
-}
-
-.header {
-    height: 80px;
-    margin-left: auto;
 }
