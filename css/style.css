@@ -343,6 +343,7 @@ body {
     margin-right: 5px;
     margin-left: 5px;
     width: 40px;
+    display: none;
 }
 
 #send-btn:hover {
@@ -452,7 +453,32 @@ body {
 .video-doc {
     width: 640px;
     height: 200px;
-    mix-blend-mode: screen; 
-   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mix-blend-mode: screen;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+#right-section.chat-started .middle-section {
+    margin: 0 auto;
+    padding-bottom: 16px;
+}
+
+.msg {
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 80%;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.msg.user {
+    align-self: flex-end;
+    background: #0f5c4a;
+    color: white;
+}
+
+.msg.bot {
+    align-self: flex-start;
+    background: #eeeeee;
+    color: #111;
 }
