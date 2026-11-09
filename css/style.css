@@ -231,7 +231,7 @@ body {
     padding-bottom: 1.5rem;
 }
 
-.welcome-section {
+#welcome-section {
     width: 100%;
     text-align: center;
     transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
@@ -242,7 +242,7 @@ body {
 }
 
 @media (min-width:768px) {
-    .welcome-section h2 {
+    #welcome-section h2 {
         font-size: 2.25rem;
     }
 }
@@ -343,7 +343,6 @@ body {
     margin-right: 5px;
     margin-left: 5px;
     width: 40px;
-    display: none;
 }
 
 #send-btn:hover {
@@ -368,6 +367,38 @@ body {
 .hidden {
     display: none !important;
 }
+
+#voice-btn.listening {
+    background-color: #b3261e;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.load-chat {
+  display: none;
+}
+
+#right-section.chat-started .load-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+#right-section.chat-started .middle-section {
+  margin: 0 auto;
+  padding-bottom: 16px;
+  justify-content: flex-end;
+} 
 
 .opacity-0 {
     opacity: 0;
@@ -473,12 +504,16 @@ body {
 
 .msg.user {
     align-self: flex-end;
-    background: #0f5c4a;
+    background: #0f1d5cb0;
     color: white;
+    border-radius: 10px;
+    font-size: 18px;
 }
 
 .msg.bot {
     align-self: flex-start;
-    background: #eeeeee;
-    color: #111;
+    background: #eeeeee6b;
+    color: #fafafa;
+    border-radius: 10px;
+    font-size: 18px;
 }

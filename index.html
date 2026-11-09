@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="new-chat-container">
-                <button class="new-chat-btn active">
+                <button class="new-chat-btn active" id="chat-btn">
                     <i data-lucide="square-pen" class="new-chat-i"></i>
                     <p class="new-chat-txt">New Chat</p>
                 </button>
@@ -41,9 +41,9 @@
                 <button class="theme-btn"><i data-lucide="sun-moon"></i></button>
                 <button class="lng-btn"><i data-lucide="languages"></i></button>
             </header>
-            <div class="load-chat" id="chats"> </di>
-            <div class="middle-section">
-                <div class="welcome-section">
+            <div class="load-chat" id="chats"> </div>
+            <div class="middle-section" >
+                <div id="welcome-section" class="welcome-section-class">
                     <video src="videos/aira_robot_animation.mp4" class="video-doc" autoplay loop muted></video>
                     <h2>Welcome buddy, where should we start ?</h2>
                 </div>
@@ -59,7 +59,7 @@
                         <button id="send-btn" class="hidden"><i data-lucide="send-horizontal" class="icon-send" ></i></button>
                     </div>
                 </div>
-                <div class="suggesion-list">
+                <div class="suggesion-list" id="suggesions">
                     <!-- <div class="suggesion-card"><button class="suggesion-card-btn">Container 1</button> <button class="close-btn"><i data-lucide="letter-x"
                                 class="icon-close"></i></button></div>
                     <div class="suggesion-card"><button class="suggesion-card-btn">Container 2</button><button class="close-btn"><i data-lucide="letter-x"
@@ -75,6 +75,7 @@
     <script>
         lucide.createIcons();
     </script>
+    <script src="js/config.js"></script>
     <script src="js/app.js"></script>
 </body>
 
