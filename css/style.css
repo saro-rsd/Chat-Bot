@@ -12,6 +12,11 @@ body {
     background: radial-gradient(circle, rgba(2, 0, 36, 1) 18%, rgba(3, 2, 52, 1) 62%, rgba(5, 4, 75, 1) 83%, rgba(5, 4, 75, 1) 93%, rgba(3, 3, 69, 1) 100%);
 }
 
+.main-layout {
+    display: flex;
+    width: 100%;
+}
+
 #left-section {
     border-right: 1px solid #001b7a;
     border-radius: 0 12px 12px 0;
@@ -407,11 +412,6 @@ body {
         height: 18px;
         stroke-width: 3px;
     }
-}
-
-.main-layout {
-    display: flex;
-    width: 100%;
 }
 
 .header {
