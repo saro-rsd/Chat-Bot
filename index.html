@@ -13,31 +13,60 @@
 </head>
 
 <body>
-    <section id="left-section">
-        <div class="side-bar">
-            <div class="side-bar-header">
-                <img src="image/chatbot-icon.png" id="chat-bot-icon">
-                <p class="icon-txt">Aira</p>
+    <div class="main-layout">
+        <section id="left-section">
+            <div class="side-bar">
+                <div class="side-bar-header">
+                    <img src="image/chatbot-icon.png" id="chat-bot-icon">
+                    <p class="icon-txt">Aira</p>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn">
+                        <i data-lucide="search" class="i"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i data-lucide="panel-right" class="i"></i>
+                    </button>
+                </div>
             </div>
-            <div class="header-icons">
-                <button class="icon-btn">
-                    <i data-lucide="search" class="i"></i>
-                </button>
-                <button class="icon-btn">
-                    <i data-lucide="panel-right" class="i"></i>
-                </button>
-            </div>
-        </div>
-        <div class="new-chat-container">
-             <button class="new-chat-btn" >
-                    <i  data-lucide="square-pen" class="new-chat-i"></i>
+            <div class="new-chat-container">
+                <button class="new-chat-btn active">
+                    <i data-lucide="square-pen" class="new-chat-i"></i>
                     <p class="new-chat-txt">New Chat</p>
-            </button>
-        </div>
-    </section>
-    <section id="right-section">
-
-    </section>
+                </button>
+            </div>
+        </section>
+        <section id="right-section">
+            <di class="load-chat" id="chats"></di>
+            <div class="middle-section">
+                <div class="welcome-section">
+                    <h2>Welcome buddy, where should we start ?</h2>
+                </div>
+                <div class="input-text-bar">
+                    <button class="add-btn" id="add">
+                        <i data-lucide="plus" class="icon-add"></i>
+                    </button>
+                    <textarea id="user-input" class="input-txt" placeholder="Ask Aira" autocomplete="off"
+                        rows="1"></textarea>
+                    <div class="function-btns">
+                        <button id="name-btn"> Aira</button>
+                        <button id="voice-btn"><i data-lucide="mic" class="icon-mic"></i></button>
+                        <button id="send-btn"><i data-lucide="send-horizontal" class="icon-send"></i></button>
+                    </div>
+                </div>
+                <div class="suggesion-list">
+                    <div class="suggesion-card">Container 1<button class="close-btn"><i data-lucide="letter-x"
+                                class="icon-close"></i></button></div>
+                    <div class="suggesion-card">Container 2<button class="close-btn"><i data-lucide="letter-x"
+                                class="icon-close"></i></button></div>
+                    <div class="suggesion-card">Container 3<button class="close-btn"><i data-lucide="letter-x"
+                                class="icon-close"></i></button></div>
+                    <div class="suggesion-card">Container 4<button class="close-btn"><i data-lucide="letter-x"
+                                class="icon-close"></i></button></div>
+                </div>
+            </div>
+        </section>
+    </div>
     <script>
         lucide.createIcons();
     </script>

@@ -7,14 +7,17 @@
 body {
     height: 100vh;
     display: flex;
-    background-color: rgb(0, 3, 54);
+    flex-direction: column;
+    background: #020024;
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 18%, rgba(3, 2, 52, 1) 62%, rgba(5, 4, 75, 1) 83%, rgba(5, 4, 75, 1) 93%, rgba(3, 3, 69, 1) 100%);
 }
 
 #left-section {
     border-right: 1px solid #001b7a;
     border-radius: 0 12px 12px 0;
-    box-shadow: 5px 0 8px rgb(248, 249, 250, 0.3);
-    background-color: #020024;
+    box-shadow: 5px 0 8px rgb(248, 249, 250, 0.5);
+    background: #030259;
+    background: linear-gradient(87deg, rgb(4, 4, 51) 30%, rgb(1, 1, 42) 55%);
     width: 320px;
     min-width: 300px;
     padding: 5px 15px 5px 0;
@@ -23,6 +26,7 @@ body {
     white-space: nowrap;
     transition: width 0.3s ease,
         min-width 0.3s ease;
+    z-index: 999;
 }
 
 #left-section.collapsed {
@@ -59,7 +63,7 @@ body {
 .side-bar {
     display: flex;
     align-items: center;
-    gap: 85px;
+    gap: 80px;
 }
 
 .icon-txt {
@@ -76,7 +80,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-right: 10px;
+    margin-right: 10px;
 }
 
 .icon-btn {
@@ -99,7 +103,10 @@ body {
 }
 
 .icon-btn:hover {
-    color: black;
+    .i {
+        color: rgb(12, 12, 12);
+    }
+
     background-color: rgb(245, 241, 241);
     border-radius: 50%;
 }
@@ -116,10 +123,23 @@ body {
     width: 100%;
     height: 40px;
     display: flex;
-    border-radius: 10px;
-    background-color: #11007e;
+    border-radius: 20px;
+    background: transparent;
     transition: 0.3s ease;
     color: white;
+    border: none;
+    padding-top: 2px;
+    padding-left: 20px;
+}
+
+.new-chat-btn:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgba(11, 34, 72, 0.766);
+}
+
+.new-chat-btn.active {
+    color: rgb(0, 0, 0);
+    background-color: rgba(11, 34, 72, 0.766);
 }
 
 .new-chat-i {
@@ -139,9 +159,4 @@ body {
     font-size: large;
     font-weight: 550;
     color: white;
-}
-
-.new-chat-btn:hover{
-    color:black;
-    background-color: rgba(19, 60, 130, 0.766);
 }
