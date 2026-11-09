@@ -109,7 +109,10 @@ body {
 }
 
 .icon-btn:hover {
-    .i{color: rgb(3, 0, 164);}
+    .i {
+        color: rgb(3, 0, 164);
+    }
+
     background-color: rgba(245, 241, 241, 0.736);
     border-radius: 50%;
 }
@@ -444,4 +447,12 @@ body {
         height: 18px;
         stroke-width: 3px;
     }
+}
+
+.video-doc {
+    width: 640px;
+    height: 200px;
+    mix-blend-mode: screen; 
+   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
 }
