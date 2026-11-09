@@ -160,3 +160,245 @@ body {
     font-weight: 550;
     color: white;
 }
+
+#right-section {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 18%, rgba(3, 2, 52, 1) 62%, rgba(5, 4, 75, 1) 83%, rgba(5, 4, 75, 1) 93%, rgba(3, 3, 69, 1) 100%);
+}
+
+.middle-section {
+    width: 100%;
+    max-width: 42rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    flex-grow: 1;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.6s ease;
+}
+
+.middle-section.shifted {
+    flex-grow: 0;
+    padding-bottom: 1.5rem;
+}
+
+.welcome-section {
+    width: 100%;
+    text-align: center;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    font-size: 1.875rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: #e5e7eb;
+}
+
+@media (min-width:768px) {
+    .welcome-section h2 {
+        font-size: 2.25rem;
+    }
+}
+
+.input-text-bar {
+    display: flex;
+    width: 112%;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    padding: 0.75rem 1rem;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(55, 65, 81, 0.6);
+    background-color: #00051599;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 35px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.icon-add,
+.icon-send,
+.icon-mic {
+    font-size: 20px;
+    margin: 3px;
+}
+
+.add-btn:hover {
+    background-color: #00156092;
+    border-radius: 9999px;
+}
+
+.input-txt {
+    background-color: transparent;
+    font-size: 20px;
+    border: none;
+    width: 70%;
+    height: 100%;
+    outline: none;
+    color: white;
+    flex-grow: 1;
+    resize: none;
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: inherit;
+    line-height: 1.5;
+    padding-top: 4px;
+}
+
+.input-txt::-webkit-scrollbar {
+    width: 6px;
+}
+
+.input-txt::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.input-txt input[type="text"]::placeholder {
+    color: #e9ebf1;
+}
+
+#name-btn {
+    background-color: transparent;
+    width: 50px;
+    height: 40px;
+    margin: 1px;
+    margin-left: 3px;
+    color: white;
+    font-size: 18px;
+    outline: none;
+    border-radius: 9999px;
+    border-color: transparent;
+}
+
+#name-btn:hover,
+#voice-btn:hover {
+    background-color: #00145d92;
+    border-radius: 9999px;
+}
+
+#send-btn {
+    color: white;
+    background-color: #001b7a;
+    border-radius: 9999px;
+    border-color: transparent;
+    outline: none;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 40px;
+}
+
+#send-btn:hover {
+    background-color: #002197;
+}
+
+#voice-btn {
+    color: white;
+    background-color: transparent;
+    border-radius: 9999px;
+    border-color: transparent;
+    outline: none;
+    width: 40px;
+}
+
+.function-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.opacity-0 {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.suggesion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.suggesion-card {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.875rem;
+    color: white;
+    width: 100%;
+}
+
+.icon-close {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    color: transparent;
+}
+
+.suggesion-card:hover {
+    padding: 15px;
+    background-color: #4b4e5847;
+    border-radius: 9999px;
+
+    .icon-close {
+        color: white;
+    }
+}
+
+.close-btn {
+    margin-left: auto;
+    background-color: transparent;
+    border-radius: 9999px;
+    border: none;
+    width: 25px;
+    height: 25px;
+}
+
+.close-btn:hover {
+    background-color: #595a5e61;
+
+    .icon-close {
+        width: 18px;
+        height: 18px;
+        stroke-width: 3px;
+    }
+}
+
+.main-layout {
+    display: flex;
+    width: 100%;
+}
+
+.header {
+    height: 80px;
+    margin-left: auto;
+}
