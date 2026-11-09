@@ -51,4 +51,35 @@ async function askChat(text) {
     }
 }
 
+function sendMessage() {
+    const text = document.getElementById("user-input").value.trim();
+    if (text === "") return;
+
+    rightSection.classList.add("chat-started")
+    addMessage(text, "user");
+    history.push({ role: "user", content: text });
+    userInput.value = "";
+
+    const typing = addMessage(text, "user");
+
+    try {
+        const reply = askChat(text);
+        typing.textContent = reply;
+        history.push({ role: "assistant", content: reply });
+    } catch (error) {
+        typing.textContent = "Error: " + err.message;
+        history.pop();
+    }
+
+    chats.scrollTop = chats.scrollHeight;
+}
+
+send.addEventListener("click",() => sendMessage());
+
+userInput.addEventListener("keydown",(e) =>{
+    if(e.key === "Enter" && !e.shiftKey){
+        e.preventDefault();
+        sendMessage();
+    }
+});
 
