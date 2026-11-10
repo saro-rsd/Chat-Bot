@@ -10,6 +10,8 @@ const newChat = document.getElementById("chat-btn");
 const welcomeSection = document.getElementById("welcome-section");
 const suggestions = document.getElementById("suggesions");
 const botNameBtn = document.getElementById("name-btn");
+const theme = document.getElementById("theme-btn-id");
+const data=null;
 
 let history = [];
 
@@ -32,9 +34,9 @@ async function askChat() {
             body: JSON.stringify({contents:history})
         });
 
-        const data = await res.json();
+        data = await res.json();
         console.log(data);
-        return data.candidate?.[0]?.content?.parts?.[0]?.text;
+        return data.candidates?.[0]?.content?.parts?.[0]?.text;
 
     } catch (error) {
         throw new Error(data.error?.message || "Request failed");
@@ -61,8 +63,9 @@ async function sendMessage() {
         const reply = await askChat(text);
         typing.classList.remove("typing");
         typing.textContent = reply;
-        history.push({ role: "user", parts: [{ text: text }] });
+        history.push({ role: "model", parts: [{ text: text }] });
     } catch (error) {
+        typing.classList.remove("typing");
         typing.textContent = "Error: " + error.message;
         history.pop();
     }
@@ -101,3 +104,14 @@ function toggleButtons() {
 }
 toggleButtons();
 
+theme.addEventListener("click",()=>{
+    const now = document.documentElement.getAttribute("data-theme");
+    applyTheme(now === "dark"?"light":"dark");  
+});
+
+function applyTheme(theme){
+    document.documentElement.setAttribute("data-theme",theme);
+    localStorage.setItem("theme",theme);
+}
+
+applyTheme(localStorage.getItem("theme") || "dark");
