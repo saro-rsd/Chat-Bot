@@ -147,3 +147,42 @@ lng.addEventListener("click", () => {
     
 });
 
+function setLanguages() {
+    const languages = [
+        {name:"English", id:"english"},
+        {name:"Sinhala", id:"sinhala"},
+        {name:"Tamil", id:"tamil"}
+    ];
+
+    languages.forEach(lang=>{
+        const btn =  document.createElement("button");
+        btn.classList.add("lan-btn");
+        btn.id = lang.id;
+        btn.textContent = lang.name;
+        langbtn.appendChild(btn);
+    });
+}
+
+function changeLanguage() {
+    const english = document.getElementById("english");
+    const sinhala = document.getElementById("sinhala");
+    const tamil = document.getElementById("tamil");
+
+    english.addEventListener("click", () => {
+        document.querySelector(".new-chat-txt").textContent = "New Chat";
+        document.querySelector(".welcome-txt").textContent = "Welcome buddy, where should we start ?";
+        langbtn.style.display = "none";
+    });
+
+    sinhala.addEventListener("click", () => {
+        document.querySelector(".new-chat-txt").textContent = "නව සංවාදය";
+        document.querySelector(".welcome-txt").textContent = "සාදරයෙන් පිළිගන්නවා යාළුවා, අපි කොහෙන්ද පටන් ගන්න ඕන?";
+        langbtn.style.display = "none";
+    });
+
+    tamil.addEventListener("click", () => {
+        document.querySelector(".new-chat-txt").textContent = "புதிய உரையாடல்";
+        document.querySelector(".welcome-txt").textContent = "வரவேற்கிறேன் நண்பா, நாம் எங்கிருந்து தொடங்கலாம்?";
+        langbtn.style.display = "none";
+    });
+}
