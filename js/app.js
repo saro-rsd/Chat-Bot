@@ -11,15 +11,15 @@ const welcomeSection = document.getElementById("welcome-section");
 const suggestions = document.getElementById("suggesions");
 const botNameBtn = document.getElementById("name-btn");
 const theme = document.getElementById("theme-btn-id");
-const lng = document.getElementById("lng-btn-id");
+const lng = document.getElementById("change-lng");
 
 let history = [];
 const suggestionsCards = [
     {
-         "Learn common sinhala phrases": "Share a quick guide with common everyday Sinhala conversational phrases and their English translations. Open with a brief 1-sentence tip on Sinhala greetings in under two short paragraphs, and end by asking me what scenario I want phrases for."
-    } ,
+        "Learn common sinhala phrases": "Share a quick guide with common everyday Sinhala conversational phrases and their English translations. Open with a brief 1-sentence tip on Sinhala greetings in under two short paragraphs, and end by asking me what scenario I want phrases for."
+    },
     {
-        
+
     }
 ];
 
@@ -129,14 +129,21 @@ function applyTheme(theme) {
 
 applyTheme(localStorage.getItem("theme") || "dark");
 
-lng.addEventListener("click", ()=> {
+const langbtn = document.getElementById("languages");
+let isCreated = false;
+
+lng.addEventListener("click", () => {
+    if (!isCreated) {
+        setLanguages();
+        changeLanguage();
+        isCreated = true;
+    }
+
+    if (langbtn.style.display === "flex") {
+        langbtn.style.display = "none";
+    } else {
+        langbtn.style.display = "flex";
+    }
     
 });
 
-
-
-const newchat = document.querySelector(".new-chat-txt");
-    newchat.textContent = "නව සංවාදය";
-
-    const welcometxt =document.querySelector(".welcome-txt");
-    welcometxt.textContent = "සාදරයෙන් පිළිගන්නවා යාළුවා, අපි කොහෙන්ද පටන් ගන්න ඕන?";
