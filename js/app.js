@@ -1,5 +1,5 @@
 const apiKey = CONFIG.GEMINI_API_KEY;
-const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
+const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
 const rightSection = document.getElementById("right-section");
 const chats = document.getElementById("chats");
@@ -11,9 +11,18 @@ const welcomeSection = document.getElementById("welcome-section");
 const suggestions = document.getElementById("suggesions");
 const botNameBtn = document.getElementById("name-btn");
 const theme = document.getElementById("theme-btn-id");
-const data=null;
+const lng = document.getElementById("lng-btn-id");
 
 let history = [];
+const suggestionsCards = [
+    {
+         "Learn common sinhala phrases": "Share a quick guide with common everyday Sinhala conversational phrases and their English translations. Open with a brief 1-sentence tip on Sinhala greetings in under two short paragraphs, and end by asking me what scenario I want phrases for."
+    } ,
+    {
+        
+    }
+];
+
 
 function addMessage(text, who) {
     const div = document.createElement("div");
@@ -31,15 +40,19 @@ async function askChat() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({contents:history})
+            body: JSON.stringify({ contents: history })
         });
 
-        data = await res.json();
-        console.log(data);
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.error?.message || `Server Error: ${res.status}`);
+        }
+
         return data.candidates?.[0]?.content?.parts?.[0]?.text;
 
     } catch (error) {
-        throw new Error(data.error?.message || "Request failed");
+        throw new Error(error.message || "Request failed");
     }
 }
 
@@ -57,13 +70,13 @@ async function sendMessage() {
 
     const typing = addMessage("...", "bot");
     typing.classList.add("typing");
-    typing.innerHTML="<span></span><span></span><span></span>";
+    typing.innerHTML = "<span></span><span></span><span></span>";
 
     try {
         const reply = await askChat(text);
         typing.classList.remove("typing");
         typing.textContent = reply;
-        history.push({ role: "model", parts: [{ text: text }] });
+        history.push({ role: "model", parts: [{ text: reply }] });
     } catch (error) {
         typing.classList.remove("typing");
         typing.textContent = "Error: " + error.message;
@@ -104,14 +117,26 @@ function toggleButtons() {
 }
 toggleButtons();
 
-theme.addEventListener("click",()=>{
+theme.addEventListener("click", () => {
     const now = document.documentElement.getAttribute("data-theme");
-    applyTheme(now === "dark"?"light":"dark");  
+    applyTheme(now === "dark" ? "light" : "dark");
 });
 
-function applyTheme(theme){
-    document.documentElement.setAttribute("data-theme",theme);
-    localStorage.setItem("theme",theme);
+function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
 }
 
 applyTheme(localStorage.getItem("theme") || "dark");
+
+lng.addEventListener("click", ()=> {
+    
+});
+
+
+
+const newchat = document.querySelector(".new-chat-txt");
+    newchat.textContent = "නව සංවාදය";
+
+    const welcometxt =document.querySelector(".welcome-txt");
+    welcometxt.textContent = "සාදරයෙන් පිළිගන්නවා යාළුවා, අපි කොහෙන්ද පටන් ගන්න ඕන?";

@@ -7,6 +7,8 @@
     <title>Aira ChatBot</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Oswald:wght@200..700&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
     </style>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -39,13 +41,15 @@
         <section id="right-section">
             <header class="header-btns">
                 <button class="theme-btn" id="theme-btn-id"><i data-lucide="sun-moon"></i></button>
-                <button class="lng-btn"><i data-lucide="languages"></i></button>
+                <button class="lng-btn" id="lng-btn-id"><i data-lucide="languages"></i>
+                    <div id="languages" class="lng-btns"></div>
+                </button>
             </header>
             <div class="load-chat" id="chats"> </div>
-            <div class="middle-section" >
+            <div class="middle-section">
                 <div id="welcome-section" class="welcome-section-class">
                     <video src="videos/aira_robot_animation.mp4" class="video-doc" autoplay loop muted></video>
-                    <h2>Welcome buddy, where should we start ?</h2>
+                    <h2 class="welcome-txt">Welcome buddy, where should we start ?</h2>
                 </div>
                 <div class="input-text-bar">
                     <button class="add-btn" id="add">
@@ -56,7 +60,8 @@
                     <div class="function-btns">
                         <button id="name-btn"> Aira</button>
                         <button id="voice-btn"><i data-lucide="mic" class="icon-mic"></i></button>
-                        <button id="send-btn" class="hidden"><i data-lucide="send-horizontal" class="icon-send" ></i></button>
+                        <button id="send-btn" class="hidden"><i data-lucide="send-horizontal"
+                                class="icon-send"></i></button>
                     </div>
                 </div>
                 <div class="suggesion-list" id="suggesions">
