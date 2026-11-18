@@ -1,5 +1,5 @@
 const apiKey = CONFIG.GEMINI_API_KEY;
-const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+const url = `https://generativelanguage.googleapis.com/v1/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`;
 
 const rightSection = document.getElementById("right-section");
 const chats = document.getElementById("chats");
@@ -8,7 +8,7 @@ const send = document.getElementById("send-btn");
 const voice = document.getElementById("voice-btn");
 const newChat = document.getElementById("chat-btn");
 const welcomeSection = document.getElementById("welcome-section");
-const suggestions = document.getElementById("suggesions");
+const suggestions = document.getElementById("suggestions");
 const botNameBtn = document.getElementById("name-btn");
 const theme = document.getElementById("theme-btn-id");
 const lng = document.getElementById("change-lng");
@@ -49,7 +49,7 @@ async function askChat() {
             throw new Error(data.error?.message || `Server Error: ${res.status}`);
         }
 
-        return data.candidates?.[0]?.content?.parts?.[0]?.text;
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No responsive received!!";
 
     } catch (error) {
         throw new Error(error.message || "Request failed");
@@ -73,7 +73,7 @@ async function sendMessage() {
     typing.innerHTML = "<span></span><span></span><span></span>";
 
     try {
-        const reply = await askChat(text);
+        const reply = await askChat();
         typing.classList.remove("typing");
         typing.textContent = reply;
         history.push({ role: "model", parts: [{ text: reply }] });
@@ -103,7 +103,7 @@ botNameBtn.addEventListener("click", () => {
 newChat.addEventListener("click", () => {
     welcomeSection.classList.remove("hidden");
     rightSection.classList.remove("chat-started");
-    suggestions.classList.add("hidden");
+    if(suggestions)suggestions.classList.add("hidden");
     chats.innerHTML = "";
     history = [];
     userInput.value = "";
@@ -144,18 +144,18 @@ lng.addEventListener("click", () => {
     } else {
         langbtn.style.display = "flex";
     }
-    
+
 });
 
 function setLanguages() {
     const languages = [
-        {name:"English", id:"english"},
-        {name:"Sinhala", id:"sinhala"},
-        {name:"Tamil", id:"tamil"}
+        { name: "English", id: "english" },
+        { name: "Sinhala", id: "sinhala" },
+        { name: "Tamil", id: "tamil" }
     ];
 
-    languages.forEach(lang=>{
-        const btn =  document.createElement("button");
+    languages.forEach(lang => {
+        const btn = document.createElement("button");
         btn.classList.add("lan-btn");
         btn.id = lang.id;
         btn.textContent = lang.name;
@@ -184,5 +184,77 @@ function changeLanguage() {
         document.querySelector(".new-chat-txt").textContent = "புதிய உரையாடல்";
         document.querySelector(".welcome-txt").textContent = "வரவேற்கிறேன் நண்பா, நாம் எங்கிருந்து தொடங்கலாம்?";
         langbtn.style.display = "none";
+    });
+}
+
+const sideBar = document.getElementById("close-sidebar");
+
+sideBar.addEventListener("click", () => {
+    
+});
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+let listening = false;
+
+voice.addEventListener("click", () => {
+    if (!recognition) {
+        alert("This browser do not support voice");
+        return;
+    }
+    if (listening) {
+        recognition.stop();
+    } else {
+        recognition.start();
+    }
+});	
+
+if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = true;
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+        listening = true;
+        voice.classList.add("listening");
+    };
+
+    recognition.onend = () => {
+        listening = false;
+        voice.classList.remove("listening");
+    };
+
+    recognition.onresult = (event) => {
+        let text = "";
+        for (let i = 0; i < event.results.length; i++) {
+            text += event.results[i][0].transcript;
+        }
+        userInput.value = text;
+        toggleButtons();
+
+        if (event.results[0].isFinal) {
+            sendMessage();
+        }
+    };
+
+    recognition.onerror = (event) => {
+        console.log("Voice error:", event.error);
+    };
+}
+	
+const closeSideBarBtn = document.getElementById("close-sidebar");
+const leftSection = document.getElementById("left-section");
+const openSideBarBtn = document.getElementById("chat-bot-icon");;
+
+if (closeSideBarBtn && leftSection) {
+    closeSideBarBtn.addEventListener("click", () => {
+        leftSection.classList.toggle("closed");
+    });
+}
+
+if (openSideBarBtn && leftSection) {
+    openSideBarBtn.addEventListener("click", () => {
+        leftSection.classList.remove("closed");
     });
 }
