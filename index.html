@@ -4,14 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Aira ChatBot</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
-
-        @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Oswald:wght@200..700&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
-    </style>
+   
+   <style>
+      
+      @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
+   
+      @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Black+Ops+One&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kotta+One&family=Matemasie&family=Oswald:wght@200..700&family=Stardos+Stencil:wght@400;700&family=Ultra&display=swap');
+   
+   </style>
+    
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
 <body>
@@ -20,82 +26,128 @@
         <!-- Side bar section - chatbot icon , search button , closed button , new-chat button , history -->
 
         <section id="left-section">
+
             <div class="side-bar">
+
                 <div class="side-bar-header">
+
                     <img src="image/chatbot-icon.png" id="chat-bot-icon">
                     <p class="icon-txt">Aira</p>
+
                 </div>
+
                 <div class="header-icons">
+
                     <button class="icon-btn">
                         <i data-lucide="search" class="i"></i>
                     </button>
+
                     <button class="icon-btn" id="close-sidebar">
                         <i data-lucide="panel-right" class="i"></i>
                     </button>
+
                 </div>
+
             </div>
+
             <div class="new-chat-container">
+
                 <button class="new-chat-btn active" id="chat-btn">
                     <i data-lucide="square-pen" class="new-chat-i"></i>
                     <p class="new-chat-txt">New Chat</p>
                 </button>
-            </div>
-            <br>
+
+            </div><br>
+
             <div class="history-container">
+
                 <div class="history-content">
+
                     <button class="history-btn" id="history-button">
                         <p class="history-txt">History</p>
                         <i data-lucide="chevron-right" class="history-icon"></i>
                     </button>
+
                 </div>
+
                 <div class="history-chat hidden" id="history-chats"></div>
+
             </div>
+
         </section>
 
         <!-- Main Section - Welcome Section , Chats Section -->
 
         <section id="right-section">
+
             <header class="header-btns">
+
                 <button id="more-opton"> <i data-lucide="ellipsis-vertical" class="more-option-icon"></i></button>
+
                 <div class="header-btns-container hidden">
+
                     <button class="theme-btn" id="theme-btn-id"><i data-lucide="sun-moon"></i></button>
+
                     <div id="lng-section" class="lng-btns-section">
+
                         <button class="change-lng-btn" id="change-lng"><i data-lucide="languages"></i></button>
                         <div id="languages" class="lng-btns"></div>
+
                     </div>
+
                 </div>
+
             </header>
+
             <div class="load-chat" id="chats"> </div>
+
             <div class="middle-section">
+
                 <div id="welcome-section" class="welcome-section-class">
+
                     <video src="videos/aira_robot_animation.mp4" class="video-doc" autoplay loop muted></video>
                     <h2 class="welcome-txt">Welcome buddy, where should we start ?</h2>
+
                 </div>
+
                 <div class="input-text-bar">
+
                     <button class="add-btn" id="add">
                         <i data-lucide="plus" class="icon-add"></i>
                     </button>
+
                     <textarea id="user-input" class="input-txt" placeholder="Ask Aira" autocomplete="off"
                         rows="1"></textarea>
+
                     <div class="function-btns">
+
                         <button id="name-btn"> Aira</button>
                         <button id="voice-btn"><i data-lucide="mic" class="icon-mic"></i></button>
-                        <button id="send-btn" class="hidden"><i data-lucide="send-horizontal"
-                                class="icon-send"></i></button>
+                        <button id="send-btn" class="hidden">
+                            <i data-lucide="send-horizontal" class="icon-send"></i>
+                        </button>
+
                     </div>
+
                 </div>
 
                 <!-- Suggestion Section -->
 
                 <div class="suggestion-list" id="suggestions"></div>
+
             </div>
+
         </section>
+
     </div>
+
     <script>
         lucide.createIcons();
     </script>
+
     <script src="js/config.js"></script>
     <script src="js/app.js"></script>
+
 </body>
 
 </html>
