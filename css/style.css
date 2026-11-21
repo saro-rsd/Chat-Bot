@@ -141,7 +141,7 @@ textarea:focus-visible {
     transform: translateX(0);
 }
 
-#left-section.closed{
+#left-section.closed {
     transform: translateX(-2%);
     min-width: 50px;
     width: 50px;
@@ -150,15 +150,19 @@ textarea:focus-visible {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    #chat-btn,
-    .icon-btn{
-        display: none;
-    }
-    #chat-bot-icon{
-        width: 35px;
-        height: 35px;
-        margin: 5px;
-    }
+}
+
+#left-section.closed #chat-btn,
+#left-section.closed .header-icons,
+#left-section.closed .history-container {
+    display: none;
+}
+
+#left-section.closed #chat-bot-icon {
+    width: 35px;
+    height: 35px;
+    margin: 8px;
+    cursor: pointer;
 }
 
 #left-section.collapsed {
@@ -196,12 +200,6 @@ textarea:focus-visible {
     object-fit: contain;
     border-radius: 14px;
     filter: drop-shadow(0 5px 12px var(--accent-glow));
-}
-
-.side-bar {
-    display: flex;
-    align-items: center;
-    gap: 80px;
 }
 
 .icon-txt {
@@ -299,6 +297,28 @@ textarea:focus-visible {
 }
 
 .header-btns {
+    z-index: 10;
+    align-items: center;
+    gap: 8px;
+    margin: 14px 22px 0 auto;
+}
+
+.header-btns-container{
+    margin: 5px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 8px;
+    position: absolute;
+    right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    color: var(--accent);
+    background: var(--surface-hover);
+}
+
+#more-opton {
+    background: transparent;
+    border: none;
     position: relative;
     z-index: 10;
     align-items: center;
@@ -307,6 +327,7 @@ textarea:focus-visible {
     display: flex;
 }
 
+#more-opton,
 .change-lng-btn,
 .theme-btn {
     width: 42px;
@@ -315,13 +336,13 @@ textarea:focus-visible {
     place-items: center;
     color: var(--text-secondary);
     background: var(--surface);
-    border: 1px solid var(--surface-border);
+    border: 3px solid var(--surface-border);
     border-radius: 14px;
     transition: all var(--transition);
     backdrop-filter: blur(12px);
 }
 
-
+#more-opton:hover,
 .theme-btn:hover,
 .change-lng-btn:hover {
     color: var(--accent);
@@ -335,10 +356,10 @@ textarea:focus-visible {
     max-width: 790px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     flex-grow: 1;
-    margin: 0 auto;
+    margin: 95px auto 0 auto;
     padding: 24px 28px;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.6s ease;
 }
@@ -356,6 +377,7 @@ textarea:focus-visible {
     font-weight: 400;
     margin-bottom: 28px;
     color: var(--text-primary);
+    position: sticky;
 }
 
 #welcome-section h2 {
@@ -378,12 +400,6 @@ textarea:focus-visible {
     mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 82%, transparent 100%);
 }
 
-@media (min-width:768px) {
-    #welcome-section h2 {
-        font-size: 2.25rem;
-    }
-}
-
 .input-text-bar {
     display: flex;
     width: 100%;
@@ -393,7 +409,7 @@ textarea:focus-visible {
     padding: 10px 12px 10px 16px;
     margin-bottom: 10px;
     background: var(--input-bg);
-    align-items: center;
+    align-items: flex-end;
     border-radius: 22px;
     backdrop-filter: blur(18px);
     border: 1px solid var(--input-border);
@@ -403,6 +419,15 @@ textarea:focus-visible {
 .input-text-bar:focus-within {
     border-color: var(--input-focus);
     box-shadow: 0 0 0 4px var(--accent-soft), var(--shadow);
+}
+
+#user-input {
+    resize: none;
+    overflow-y: hidden;
+    min-height: 44px;
+    max-height: 160px;
+    line-height: 1.4;
+    box-sizing: border-box;
 }
 
 .add-btn {
@@ -431,21 +456,22 @@ textarea:focus-visible {
 }
 
 .input-txt {
+    resize: none;
+    box-sizing: border-box;
     background: transparent;
     font-size: 16px;
     border: none;
-    width: 70%;
+    width: 100%;
     min-width: 0;
-    max-height: 150px;
+    min-height: 40px;
+    max-height: 160px;
     outline: none;
+    line-height: 1.5;
     color: var(--text-primary);
     flex: 1;
-    resize: none;
-    max-height: 150px;
-    overflow-y: auto;
+    overflow-y: hidden;
     font-family: inherit;
-    line-height: 1.5;
-    padding: 8px 2px;
+    padding: 8px 4px;
 }
 
 .input-txt::-webkit-scrollbar,
@@ -456,11 +482,18 @@ textarea:focus-visible {
 .input-txt::-webkit-scrollbar-thumb,
 #chats::-webkit-scrollbar-thumb {
     background: var(--scrollbar);
-    border-radius: 2c0px;
+    border-radius: 20px;
 }
 
 .input-txt::placeholder {
     color: var(--text-muted);
+}
+
+.add-btn,
+#name-btn,
+#voice-btn,
+#send-btn {
+    margin-bottom: 1px;
 }
 
 #name-btn,
@@ -577,7 +610,7 @@ textarea:focus-visible {
     visibility: hidden;
 }
 
-.suggesion-list {
+.suggestion-list {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -586,7 +619,7 @@ textarea:focus-visible {
     text-align: left;
 }
 
-.suggesion-card {
+.suggestion-card {
     width: 100%;
     min-height: 42px;
     display: flex;
@@ -599,13 +632,13 @@ textarea:focus-visible {
     transition: all var(--transition);
 }
 
-.suggesion-card:hover {
+.suggestion-card:hover {
     color: var(--text-primary);
     background: var(--surface-hover);
     border-color: var(--surface-border);
 }
 
-.suggesion-card-btn {
+.suggestion-card-btn {
     width: 100%;
     min-height: 42px;
     padding: 8px 14px;
@@ -738,4 +771,82 @@ textarea:focus-visible {
 .lan-btn:hover {
     color: var(--accent);
     background: var(--surface-hover);
+}
+
+.history-container {
+    background: transparent;
+    display: flex;
+    width: 100%;
+    margin: 20px 5px;
+    flex-direction: column;
+}
+
+.history-content {
+    display: flex;
+}
+
+.history-btn {
+    background: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: none;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+.history-btn:hover {
+    color: var(--accent);
+    background: var(--surface-hover);
+    transform: translateY(-1px);
+
+    .history-icon {
+        color: var(--accent);
+    }
+}
+
+.history-txt {
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.history-chat {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-chats {
+    display: flex;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 2px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.history-chats:hover {
+    color: var(--accent);
+    background: var(--surface-hover);
+
+    .history-array-icon {
+        color: var(--accent);
+    }
+}
+
+.history-array-icon {
+    margin-right: 10px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.history-icon {
+    transition: transform 0.25s ease;
+}
+
+.history-icon.rotated {
+    transform: rotate(90deg);
 }

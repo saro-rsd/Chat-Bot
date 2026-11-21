@@ -16,6 +16,9 @@
 
 <body>
     <div class="main-layout">
+
+        <!-- Side bar section - chatbot icon , search button , closed button , new-chat button , history -->
+
         <section id="left-section">
             <div class="side-bar">
                 <div class="side-bar-header">
@@ -37,13 +40,29 @@
                     <p class="new-chat-txt">New Chat</p>
                 </button>
             </div>
+            <br>
+            <div class="history-container">
+                <div class="history-content">
+                    <button class="history-btn" id="history-button">
+                        <p class="history-txt">History</p>
+                        <i data-lucide="chevron-right" class="history-icon"></i>
+                    </button>
+                </div>
+                <div class="history-chat hidden" id="history-chats"></div>
+            </div>
         </section>
+
+        <!-- Main Section - Welcome Section , Chats Section -->
+
         <section id="right-section">
             <header class="header-btns">
-                <button class="theme-btn" id="theme-btn-id"><i data-lucide="sun-moon"></i></button>
-                <div id="lng-section" class="lng-btns-section">
-                    <button class="change-lng-btn" id="change-lng"><i data-lucide="languages"></i></button>
-                    <div id="languages" class="lng-btns"></div>
+                <button id="more-opton"> <i data-lucide="ellipsis-vertical" class="more-option-icon"></i></button>
+                <div class="header-btns-container hidden">
+                    <button class="theme-btn" id="theme-btn-id"><i data-lucide="sun-moon"></i></button>
+                    <div id="lng-section" class="lng-btns-section">
+                        <button class="change-lng-btn" id="change-lng"><i data-lucide="languages"></i></button>
+                        <div id="languages" class="lng-btns"></div>
+                    </div>
                 </div>
             </header>
             <div class="load-chat" id="chats"> </div>
@@ -65,16 +84,10 @@
                                 class="icon-send"></i></button>
                     </div>
                 </div>
-                <div class="suggesion-list" id="suggestions">
-                    <!-- <div class="suggesion-card"><button class="suggesion-card-btn">Container 1</button> <button class="close-btn"><i data-lucide="letter-x"
-                                class="icon-close"></i></button></div>
-                    <div class="suggesion-card"><button class="suggesion-card-btn">Container 2</button><button class="close-btn"><i data-lucide="letter-x"
-                                class="icon-close"></i></button></div>
-                    <div class="suggesion-card"><button class="suggesion-card-btn">Container 3</button><button class="close-btn"><i data-lucide="letter-x"
-                                class="icon-close"></i></button></div>
-                    <div class="suggesion-card"><button class="suggesion-card-btn">Container 4</button><button class="close-btn"><i data-lucide="letter-x"
-                                class="icon-close"></i></button></div> -->
-                </div>
+
+                <!-- Suggestion Section -->
+
+                <div class="suggestion-list" id="suggestions"></div>
             </div>
         </section>
     </div>

@@ -19,10 +19,22 @@ const suggestionsCards = [
         "Learn common sinhala phrases": "Share a quick guide with common everyday Sinhala conversational phrases and their English translations. Open with a brief 1-sentence tip on Sinhala greetings in under two short paragraphs, and end by asking me what scenario I want phrases for."
     },
     {
-
+        "Design a phone wallpaper for me": "Design a phone wallpaper for me"
+    },
+    {
+        "Find healthy dinner reciepes": "Provide five dinner recipes that take under 30 minutes, use fewer than 10 ingredients, and are toddler approved. Include nutritional highlights for each meal, focusing on protein and hidden vegetables."
+    },
+    {
+        "About Software engineering": "About software engineering."
+    },
+    {
+        "Recommend Sri Lankan dishes": "Highlight popular traditional dishes to try when exploring Sri Lankan cuisine. Open with a brief description of key regional flavors in under two paragraphs, and end by asking me if I prefer vegetarian or seafood options.    "
     }
 ];
 
+let tempSuggestionCards = [...suggestionsCards];
+
+//Add Message function
 
 function addMessage(text, who) {
     const div = document.createElement("div");
@@ -32,6 +44,9 @@ function addMessage(text, who) {
     chats.scrollTop = chats.scrollHeight;
     return div;
 }
+
+
+//API connect function
 
 async function askChat() {
     try {
@@ -49,15 +64,19 @@ async function askChat() {
             throw new Error(data.error?.message || `Server Error: ${res.status}`);
         }
 
-        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No responsive received!!";
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No responsive received!";
 
     } catch (error) {
         throw new Error(error.message || "Request failed");
     }
 }
 
-async function sendMessage() {
-    const text = document.getElementById("user-input").value.trim();
+//Send Message function
+
+async function sendMessage(message = "") {
+    const cleanMessage = typeof message === "string" ? message.trim() : "";
+    const text = cleanMessage || userInput.value.trim();
+
     if (text === "") return;
 
     welcomeSection.classList.add("hidden");
@@ -65,7 +84,9 @@ async function sendMessage() {
     suggestions.classList.add("hidden");
     addMessage(text, "user");
     history.push({ role: "user", parts: [{ text: text }] });
+    // addToHistory(text);
     userInput.value = "";
+    autoResizeTextArea();
     toggleButtons();
 
     const typing = addMessage("...", "bot");
@@ -88,6 +109,8 @@ async function sendMessage() {
 
 send.addEventListener("click", () => sendMessage());
 
+//Enter button scence for User Input
+
 userInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
@@ -95,27 +118,41 @@ userInput.addEventListener("keydown", (e) => {
     }
 });
 
-userInput.addEventListener("input", toggleButtons);
+userInput.addEventListener("input", () => {
+    suggestions.classList.add("hidden");
+    toggleButtons();
+    autoResizeTextArea();
+});
+
+
 botNameBtn.addEventListener("click", () => {
     newChat.click();
 });
 
+//New Chat button function
+
 newChat.addEventListener("click", () => {
     welcomeSection.classList.remove("hidden");
     rightSection.classList.remove("chat-started");
-    if(suggestions)suggestions.classList.add("hidden");
+    suggestions.classList.remove("hidden");
     chats.innerHTML = "";
     history = [];
     userInput.value = "";
     toggleButtons();
-    console.log(rightSection.className);
+    tempSuggestionCards = [...suggestionsCards];
+    loadSuggestions();
 });
+
+//Send button toggle
 
 function toggleButtons() {
     const hasText = userInput.value.trim() !== "";
     send.classList.toggle("hidden", !hasText);
 }
+
 toggleButtons();
+
+//Change theme & apply theme
 
 theme.addEventListener("click", () => {
     const now = document.documentElement.getAttribute("data-theme");
@@ -128,6 +165,18 @@ function applyTheme(theme) {
 }
 
 applyTheme(localStorage.getItem("theme") || "dark");
+
+
+//Change language & set language
+
+const moreOption = document.getElementById("more-opton");
+const headerBtns = document.querySelector(".header-btns-container");
+
+moreOption.addEventListener("click", () => {
+    headerBtns?.classList.toggle("hidden");
+});
+
+
 
 const langbtn = document.getElementById("languages");
 let isCreated = false;
@@ -187,11 +236,7 @@ function changeLanguage() {
     });
 }
 
-const sideBar = document.getElementById("close-sidebar");
-
-sideBar.addEventListener("click", () => {
-    
-});
+//Voice button function - get voice and send response
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = null;
@@ -207,7 +252,7 @@ voice.addEventListener("click", () => {
     } else {
         recognition.start();
     }
-});	
+});
 
 if (SpeechRecognition) {
     recognition = new SpeechRecognition();
@@ -242,10 +287,12 @@ if (SpeechRecognition) {
         console.log("Voice error:", event.error);
     };
 }
-	
+
+//Side panel - open & close
+
 const closeSideBarBtn = document.getElementById("close-sidebar");
 const leftSection = document.getElementById("left-section");
-const openSideBarBtn = document.getElementById("chat-bot-icon");;
+const openSideBarBtn = document.getElementById("chat-bot-icon");
 
 if (closeSideBarBtn && leftSection) {
     closeSideBarBtn.addEventListener("click", () => {
@@ -258,3 +305,106 @@ if (openSideBarBtn && leftSection) {
         leftSection.classList.remove("closed");
     });
 }
+
+
+//Load Suggestion cards
+
+function loadSuggestions() {
+    if (!suggestionsCards) return;
+
+    const visibleCards = tempSuggestionCards.slice(0, 3);
+    suggestions.innerHTML = "";
+
+    visibleCards.forEach((suggestCard, index) => {
+        const containerDiv = document.createElement("div");
+        const containerButton = document.createElement("button");
+        const closeButton = document.createElement("button");
+        const closeIcon = document.createElement("i");
+        closeIcon.setAttribute("data-lucide", "letter-x");
+
+        containerDiv.classList.add("suggestion-card");
+        containerButton.classList.add("suggestion-card-btn");
+        closeButton.classList.add("close-btn");
+        closeIcon.classList.add("icon-close");
+
+        const key = Object.keys(suggestCard)[0];
+        containerButton.textContent = key;
+
+        containerButton.addEventListener("click", () => {
+            const text = Object.values(suggestCard)[0];
+            sendMessage(text);
+            toggleButtons();
+        });
+
+        closeButton.addEventListener("click", () => {
+            tempSuggestionCards.splice(index, 1);
+            loadSuggestions();
+        });
+
+        closeButton.appendChild(closeIcon);
+        containerDiv.appendChild(containerButton);
+        containerDiv.appendChild(closeButton);
+        suggestions.appendChild(containerDiv);
+    });
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+}
+
+loadSuggestions();
+
+//Auto Resize text area function
+
+function autoResizeTextArea() {
+    if (!userInput) return;
+
+    const maxHeight = 160;
+    userInput.style.height = "auto";
+    userInput.style.height = Math.min(userInput.scrollHeight, maxHeight) + "px";
+    userInput.style.overflowY = userInput.scrollHeight > maxHeight ? "auto" : "hidden";
+}
+
+autoResizeTextArea();
+
+
+//History button function
+
+const historyButton = document.getElementById("history-button");
+const historyContainer = document.getElementById("history-chats");
+
+if (historyButton && historyContainer) {
+    historyButton.addEventListener("click", () => {
+        const isHidden = historyContainer.classList.toggle("hidden");
+        const historyIcon = document.querySelector(".history-icon");
+        if (historyIcon) {
+            historyIcon.classList.toggle("rotated", !isHidden);
+        }
+    });
+}
+
+//History chats function
+
+// function addToHistory(promptText) {
+//     if (!promptText || !historyContainer) return;
+
+//     const historyChatList = document.createElement("button");
+//     historyChatList.classList.add("history-chats");
+
+//     const historyChatListIcon = document.createElement("i");
+//     historyChatListIcon.setAttribute("data-lucide", "arrow-right");
+//     historyChatListIcon.classList.add("history-array-icon");
+
+//     const historyLabel = document.createElement("span");
+//     // historyLabel.className.add();
+
+//     historyLabel.textContent = promptText;
+
+//     historyChatList.append(historyChatListIcon, historyLabel);
+//     historyContainer.appendChild(historyChatList);
+
+//     if (typeof lucide !== "undefined") {
+//         lucide.createIcons();
+//     }
+
+// }
